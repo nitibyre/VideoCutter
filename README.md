@@ -27,16 +27,16 @@ Bu basit Python scripti, yerel bir video dosyasını kullanıcı tarafından bel
    [Python resmi sitesinden indirin](https://www.python.org/downloads/)  
    veya Komut İstemcisine şu komutu yazın:
 
-```
-winget install python
-```
+   ```
+   winget install python
+   ```
 
 2. **MoviePy kütüphanesini yükleyin**  
    Komut İstemcisine şu komutu yazın:
 
-```
-pip install moviepy
-```
+   ```
+   pip install moviepy
+   ```
 
 3. **FFmpeg kurulumu**
 
