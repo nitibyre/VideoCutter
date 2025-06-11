@@ -42,9 +42,30 @@ pip install moviepy==1.0.3
 ```
 
 ## 🚀 Installation & Usage
-Option 1: From Terminal
-Open terminal or command prompt.
 
-Navigate to the folder where VidCutter.py is located.
+**Option 1: From Terminal**
+1. Open terminal or command prompt.
+2. Navigate to the folder where VidCutter.py is located.
+3. Run the script:
+```bash
+python VidCutter.py
+```
+4. Follow the on-screen instructions:
+5. Enter full video path (e.g. C:\Users\Name\Videos\myvideo.mp4)
+6. Enter part duration (e.g. 02:30 for 2 minutes 30 seconds)
+7. Wait until the parts are generated.
 
-Run the script:
+**Option 2: Double Click**
+If you’re on Windows, you can just double-click the VidCutter.py file to start the process.
+
+## ❗ Known Issues
+No issues have been reported yet.
+If you encounter any problems, feel free to open an Issue.
+
+## 🙅 Contribution
+This is a personal tool. Contributions are not open for now.
+
+## 📞 Support
+Open an Issue for any bugs, questions, or help.
+
+Crafted with focus by Serhat Çakı.
