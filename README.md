@@ -1,43 +1,50 @@
-# Video Splitter
+# VidCutter
 
-This Python script splits a video file into smaller parts of a specified length.  
-The part length is entered in **mm:ss** (minutes:seconds) format.  
+**Version:** 1.0.0  
+**Date:** 2025-06-11  
+**License:** MIT  
 
-## Features
+VidCutter is a fast and simple CLI tool that splits a video file into smaller parts based on your input duration in **minutes:seconds** format.
 
-- Takes full path of the video file as input.  
-- Takes part length in mm:ss format (e.g. 02:30 for 2 minutes 30 seconds).  
-- Automatically creates a folder named as `videoName parts (dd_mm_yyyy hh_mm_ss)` to store the output parts.  
-- Saves the video parts as `part_1.mp4`, `part_2.mp4`, etc. inside the folder.  
-- Supports any video length and splits accordingly.  
+---
 
-## Requirements
+## 🔧 What It Does
 
-- Python 3.x  
-- moviepy (`pip install moviepy`)  
+1. Asks you for the full path of the video file.  
+2. Asks for the part duration in `mm:ss` format.  
+3. Splits the video into equal-length parts.  
+4. Saves the parts inside a new folder named: [video name] parts (day_month_year hour_minute_second)
 
-## How to Use
+Each output file is named `[video name]_part_1.mp4`, `[video name]_part_2.mp4`, etc.
 
-1. Open your terminal or command prompt.  
-2. Run the script by typing:  
-   ```bash
-   python video_splitter.py
-When prompted, enter the full path to your video file.
+---
 
-Enter the part length in mm:ss format (e.g., 05:00 for 5 minutes).
+## ⚙️ Features
 
-The script will create a timestamped folder and save the split video parts inside it.
+- Fast and lightweight  
+- Simple and interactive  
+- Output folder is timestamped to prevent overwrites  
+- Ideal for content creators & social media editors  
 
-Wait until the script finishes processing.
+---
 
-Notes
-Ensure the video file path is correct and accessible.
+## 📦 Requirements
 
-The script validates the mm:ss format and seconds must be less than 60.
+- Python **3.12.9**  
+- `moviepy` **1.0.3**  
+> (The script may implicitly depend on `ffmpeg`, `ffmpeg-python`, `imageio`, and `imageio-ffmpeg`.  
+> If you encounter errors, try installing these manually.)
 
-Output folder includes a timestamp to avoid overwriting existing folders.
+Install requirements with:
 
-License
-This project is licensed under the MIT License.
+```bash
+pip install moviepy==1.0.3
+```
 
-Created with ❤️ by [Your Name]
+## 🚀 Installation & Usage
+Option 1: From Terminal
+Open terminal or command prompt.
+
+Navigate to the folder where VidCutter.py is located.
+
+Run the script:
