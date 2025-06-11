@@ -1,84 +1,43 @@
-# 🎬 Video Bölücü
+# Video Splitter
 
-Bu basit Python scripti, yerel bir video dosyasını kullanıcı tarafından belirlenen sürelerde küçük parçalara böler ve bu parçaları otomatik olarak bir klasöre kaydeder.
+This Python script splits a video file into smaller parts of a specified length.  
+The part length is entered in **mm:ss** (minutes:seconds) format.  
 
----
+## Features
 
-## 🚀 Özellikler
+- Takes full path of the video file as input.  
+- Takes part length in mm:ss format (e.g. 02:30 for 2 minutes 30 seconds).  
+- Automatically creates a folder named as `videoName parts (dd_mm_yyyy hh_mm_ss)` to store the output parts.  
+- Saves the video parts as `part_1.mp4`, `part_2.mp4`, etc. inside the folder.  
+- Supports any video length and splits accordingly.  
 
-- Herhangi bir yerel video dosyasını küçük parçalara böler
-- Parça uzunluğunu saniye cinsinden kullanıcı belirler
-- Otomatik olarak `<video_adı> bölümleri` adlı bir klasör oluşturur
-- MoviePy kütüphanesi ile yaygın video formatlarını destekler (`.mp4`, `.avi`, vb.)
+## Requirements
 
----
+- Python 3.x  
+- moviepy (`pip install moviepy`)  
 
-## 🧰 Gereksinimler
+## How to Use
 
-- Python 3.6 veya üzeri
-- [MoviePy](https://zulko.github.io/moviepy/) Python kütüphanesi
-- Sisteme kurulu ve PATH'e eklenmiş [FFmpeg](https://ffmpeg.org/)
+1. Open your terminal or command prompt.  
+2. Run the script by typing:  
+   ```bash
+   python video_splitter.py
+When prompted, enter the full path to your video file.
 
----
+Enter the part length in mm:ss format (e.g., 05:00 for 5 minutes).
 
-## ⚙️ Kurulum
+The script will create a timestamped folder and save the split video parts inside it.
 
-1. **Python 3.6+ kurun**  
-   [Python resmi sitesinden indirin](https://www.python.org/downloads/)  
-   veya Komut İstemcisine şu komutu yazın:
+Wait until the script finishes processing.
 
-   ```
-   winget install python
-   ```
+Notes
+Ensure the video file path is correct and accessible.
 
-2. **MoviePy kütüphanesini yükleyin**  
-   Komut İstemcisine şu komutu yazın:
+The script validates the mm:ss format and seconds must be less than 60.
 
-   ```
-   pip install moviepy
-   ```
+Output folder includes a timestamp to avoid overwriting existing folders.
 
-3. **FFmpeg kurulumu**
+License
+This project is licensed under the MIT License.
 
-- [ffmpeg.org](https://ffmpeg.org/) adresinden sisteminize uygun FFmpeg sürümünü indirin.
-- Kurulumdan sonra FFmpeg’in PATH'e eklendiğinden emin olun.
-- Alternatif olarak aşağıdaki komutu deneyebilirsiniz:
-
-  ```
-  pip install imageio-ffmpeg
-  ```
-
----
-
-## 🧪 Kullanım
-
-1. Scripti çalıştırın.
-2. İstenen yerel video dosyasının **tam yolunu** girin. Örnek:
-
-- **Windows**: `C:\Users\Kullanıcı\Videolar\ornek.mp4`
-- **macOS/Linux**: `/home/kullanici/Videolar/ornek.mp4`
-
-3. Parça uzunluğunu **saniye cinsinden** girin (örneğin `10`).
-
-Script, bulunduğunuz dizinde `<video_adı> bölümleri` adında bir klasör oluşturacak ve bölünmüş parçaları bu klasöre kaydedecektir.
-
----
-
-## ⚠️ Notlar
-
-- Script **sadece yerel video dosyalarıyla** çalışır.
-- YouTube veya benzeri çevrimiçi videoları önce indirip ardından kullanmalısınız.
-- Scriptin çalıştığı klasörde dosya okuma/yazma izinlerinizin olması gerekir.
-
----
-
-## 📬 İletişim
-
-Sorularınız, hata bildirimleriniz veya önerileriniz için lütfen GitHub üzerinden bir **Issue** açın.  
-Her türlü katkı ve geri bildirime açığız!
-
----
-
-## 🪪 Lisans
-
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+Created with ❤️ by [Your Name]

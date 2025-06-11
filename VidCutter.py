@@ -1,53 +1,62 @@
-#C:\Users\serha\Desktop\Yeni klasör\pano.mp4
 import os
 from moviepy.video.io.VideoFileClip import VideoFileClip
+from datetime import datetime
 
-# Geçerli bir video dosyası yolu alınana kadar sor
+def convert_to_seconds(time_str):
+    try:
+        parts = time_str.split(':')
+        if len(parts) != 2:
+            return None
+        minutes = int(parts[0])
+        seconds = int(parts[1])
+        if minutes < 0 or seconds < 0 or seconds >= 60:
+            return None
+        return minutes * 60 + seconds
+    except:
+        return None
+
 while True:
-    video_path = input("Video dosyasının tam yolunu ve adını yazınız (örn: C:\\Users\\AAAaa\\Desktop\\Yeni klasör\\pano.mp4): ").strip()
+    video_path = input("Enter the full path and name of the video file (e.g., C:\\Users\\AAAaa\\Desktop\\New folder\\video.mp4): ").strip()
     if os.path.isfile(video_path):
         break
     else:
-        print("Girdiğiniz dosya bulunamadı. Lütfen doğru ve tam yolu yazınız.")
+        print("The file you entered was not found. Please enter the correct and full path.")
 
-# Parça süresini al
 while True:
-    try:
-        parca_suresi = float(input("Videonun kaç saniyelik parçalara bölünmesini istersiniz? (örn: 10): "))
-        if parca_suresi <= 0:
-            print("Lütfen pozitif bir sayı giriniz.")
-            continue
-        break
-    except ValueError:
-        print("Lütfen geçerli bir sayı giriniz.")
+    time_input = input("Enter the part length in mm:ss format (e.g., 02:30 for 2 minutes 30 seconds): ").strip()
+    clip_duration = convert_to_seconds(time_input)
+    if clip_duration is None or clip_duration <= 0:
+        print("Please enter a valid time in mm:ss format, with seconds less than 60.")
+        continue
+    break
 
 clip = VideoFileClip(video_path)
-video_suresi = clip.duration
+video_length = clip.duration
 
-# Video ismini dosya uzantısından ayır (örnek: pano.mp4 -> pano)
-video_ismi = os.path.splitext(os.path.basename(video_path))[0]
+video_name = os.path.splitext(os.path.basename(video_path))[0]
 
-# Klasör adı oluştur
-klasor_adi = f"{video_ismi} bölümleri"
+now = datetime.now()
+timestamp = now.strftime("%d_%m_%Y %H_%M_%S")
 
-# Klasör yoksa oluştur
-if not os.path.exists(klasor_adi):
-    os.makedirs(klasor_adi)
+folder_name = f"{video_name} parts ({timestamp})"
 
-parca_sayisi = int(video_suresi // parca_suresi)
-if video_suresi % parca_suresi != 0:
-    parca_sayisi += 1
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
 
-print(f"Video {video_suresi:.2f} saniye, toplam {parca_sayisi} parça olarak kaydedilecek.\n")
+number_of_parts = int(video_length // clip_duration)
+if video_length % clip_duration != 0:
+    number_of_parts += 1
 
-for i in range(parca_sayisi):
-    baslangic = i * parca_suresi
-    bitis = min((i + 1) * parca_suresi, video_suresi)
-    parca = clip.subclipped(baslangic, bitis)  # senin kodundaki gibi bıraktım
-    dosya_adi = os.path.join(klasor_adi, f"parca_{i+1}.mp4")
-    print(f"{dosya_adi} kaydediliyor... ({baslangic:.2f}-{bitis:.2f} saniye)")
-    parca.write_videofile(dosya_adi, codec="libx264")
+print(f"The video is {video_length:.2f} seconds long and will be saved in {number_of_parts} parts.\n")
+
+for i in range(number_of_parts):
+    start = i * clip_duration
+    end = min((i + 1) * clip_duration, video_length)
+    part = clip.subclip(start, end)
+
+    file_name = os.path.join(folder_name, f"{video_name}_parts_{i+1}.mp4")
+    print(f"Saving {file_name}... ({start:.2f}-{end:.2f} seconds)")
+    part.write_videofile(file_name, codec="libx264")
 
 clip.close()
-print("Bütün parçalar başarıyla kaydedildi!")
-
+print("All parts have been successfully saved!")
